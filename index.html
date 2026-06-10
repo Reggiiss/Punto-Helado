@@ -665,13 +665,13 @@ footer a{color:var(--teal);text-decoration:none;}
 </section>
 </div>
 
-<!-- ========================================================= -->
-<!-- COMPONENTE DE ACCESIBILIDAD Y TRADUCCIÓN (PUNTO HELADO)  -->
-<!-- ========================================================= -->
+<!-- ========================================================================= -->
+<!-- COMPONENTE: ACCESIBILIDAD, TRADUCTOR, COOKIES Y LICENCIA (PUNTO HELADO)   -->
+<!-- ========================================================================= -->
 
-<!-- Estilos del Menú, Accesibilidad y Traductor -->
+<!-- Estilos de todo el ecosistema -->
 <style>
-  /* Botón Flotante Principal */
+  /* --- BOTÓN FLOTANTE PRINCIPAL --- */
   #btn-access-toggle {
     position: fixed;
     bottom: 20px;
@@ -679,10 +679,10 @@ footer a{color:var(--teal);text-decoration:none;}
     z-index: 10000;
     width: 50px;
     height: 50px;
-    background: var(--dark);
-    border: 2px solid var(--teal);
+    background: var(--dark, #0d2626);
+    border: 2px solid var(--teal, #3ec8c8);
     border-radius: 50%;
-    color: var(--teal);
+    color: var(--teal, #3ec8c8);
     font-size: 1.5rem;
     cursor: pointer;
     display: flex;
@@ -693,28 +693,29 @@ footer a{color:var(--teal);text-decoration:none;}
   }
   #btn-access-toggle:hover, #btn-access-toggle:focus { 
     transform: scale(1.1); 
-    background: var(--teal); 
-    color: var(--dark); 
+    background: var(--teal, #3ec8c8); 
+    color: var(--dark, #0d2626); 
   }
   
-  /* Menú Desplegable */
+  /* --- MENÚ DESPLEGABLE (ACCESIBILIDAD E IDIOMA) --- */
   #accessibility-menu {
     position: fixed;
     bottom: 85px;
     left: 20px;
     z-index: 10000;
-    background: rgba(13, 38, 38, 0.98);
-    border: 2px solid var(--teal);
+    background: #0d2626;
+    border: 2px solid var(--teal, #3ec8c8);
     border-radius: 16px;
     padding: 16px;
-    width: 280px;
+    width: 290px;
     display: none;
     box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     font-family: 'Space Grotesk', sans-serif;
-    backdrop-filter: blur(4px);
+    max-height: 75vh; /* Evita que el menú se salga de la pantalla */
+    overflow-y: auto;  /* Permite hacer scroll dentro del menú si es necesario */
   }
   #accessibility-menu h3 {
-    color: var(--white);
+    color: var(--white, #fff);
     font-size: 0.9rem;
     margin: 15px 0 8px 0;
     text-transform: uppercase;
@@ -728,7 +729,7 @@ footer a{color:var(--teal);text-decoration:none;}
     width: 100%;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(62,200,200,0.3);
-    color: var(--white);
+    color: var(--white, #fff);
     padding: 10px 14px;
     margin-bottom: 8px;
     border-radius: 8px;
@@ -737,108 +738,132 @@ footer a{color:var(--teal);text-decoration:none;}
     text-align: left;
     transition: all 0.2s;
   }
-  .access-btn:hover, .access-btn:focus { 
-    background: var(--teal); 
-    color: var(--dark); 
-    font-weight: bold; 
+  .access-btn:hover { background: var(--teal, #3ec8c8); color: var(--dark, #0d2626); font-weight: bold; }
+
+  /* Ajustes del traductor para despliegue cómodo */
+  #google_translate_element { 
+    display: block !important; 
+    visibility: visible !important; 
+    margin-bottom: 8px;
+  }
+  .goog-te-gadget { font-family: 'Space Grotesk', sans-serif !important; color: transparent !important; }
+  .goog-te-combo {
+    width: 100% !important; 
+    background: #133838 !important; 
+    border: 1px solid var(--teal, #3ec8c8) !important;
+    color: #ffffff !important; 
+    padding: 10px !important; 
+    border-radius: 8px !important; 
+    font-size: 0.9rem !important;
+    outline: none !important; 
+    cursor: pointer !important;
+  }
+  .goog-te-combo option { background: #0d2626 !important; color: #ffffff !important; }
+  
+  /* Ocular elementos invasivos globales de Google */
+  .goog-te-banner-frame, .goog-te-banner, .skiptranslate iframe, .goog-tooltip, .goog-te-balloon-frame, #goog-gt-tt { 
+    display: none !important; 
+    visibility: hidden !important; 
+  }
+  body { top: 0 !important; position: static !important; }
+  body.translated-site img { filter: brightness(0.85) contrast(1.1); }
+
+  /* --- BANNER DE COOKIES --- */
+  #cookies-banner {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(13, 38, 38, 0.95);
+    border: 2px solid var(--teal, #3ec8c8);
+    border-radius: 12px;
+    padding: 15px 20px;
+    width: 320px;
+    z-index: 9999;
+    font-family: 'Space Grotesk', sans-serif;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    display: none;
+    animation: slideUp 0.4s ease-out;
+  }
+  #cookies-banner p { color: #ffffff; font-size: 0.85rem; line-height: 1.4; margin: 0 0 12px 0; }
+  .cookie-btn {
+    background: var(--teal, #3ec8c8); color: var(--dark, #0d2626); border: none;
+    padding: 8px 15px; font-size: 0.85rem; font-weight: bold; border-radius: 6px;
+    cursor: pointer; width: 100%; transition: background 0.2s;
+  }
+  .cookie-btn:hover { background: #fff; }
+
+  /* --- SECCIÓN CREATIVE COMMONS --- */
+  .cc-box {
+    background: rgba(255,255,255,0.03); border: 1px dashed rgba(62,200,200,0.4);
+    border-radius: 8px; padding: 10px; font-size: 0.75rem; color: #ccc; line-height: 1.3; text-align: center;
+  }
+  .cc-box a { color: var(--teal, #3ec8c8); text-decoration: none; font-weight: bold; }
+
+  @keyframes slideUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
   }
 
-  /* Personalización del contenedor de Google Translate para que combine con la web */
-  .translate-wrapper {
-    margin-bottom: 5px;
-  }
-  .goog-te-gadget {
-    font-family: 'Space Grotesk', sans-serif !important;
-    color: transparent !important;
-  }
-  .goog-te-gadget .goog-te-combo {
-    width: 100%;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid var(--teal);
-    color: #fff;
-    padding: 8px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    outline: none;
-    cursor: pointer;
-  }
-  .goog-te-gadget .goog-te-combo option {
-    background: #0d2626;
-    color: #fff;
-  }
-  /* Ocultar barra superior molesta de Google */
-  .goog-te-banner-frame, .skiptranslate iframe { display: none !important; }
-  body { top: 0 !important; }
-  
-  /* Advertencia visual sobre imágenes cuando no está en Español */
-  body.translated-site img {
-    position: relative;
-    filter: brightness(0.85);
-  }
-  
-  /* Adaptación Responsive para celulares */
+  /* --- RESPONSIVE --- */
   @media (max-width: 576px) {
-    #btn-access-toggle {
-      bottom: 15px;
-      left: 15px;
-      width: 46px;
-      height: 46px;
-      font-size: 1.3rem;
-    }
+    #btn-access-toggle { bottom: 15px; left: 15px; width: 46px; height: 46px; font-size: 1.3rem; }
     #accessibility-menu {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      border-radius: 20px 20px 0 0;
-      border-left: none;
-      border-right: none;
-      border-bottom: none;
-      padding: 20px 15px;
-      box-shadow: 0 -5px 25px rgba(0,0,0,0.6);
+      position: fixed; left: 0; bottom: 0; width: 100%; border-radius: 20px 20px 0 0;
+      border-left: none; border-right: none; border-bottom: none; padding: 20px 15px;
+      max-height: 60vh;
     }
-    #accessibility-menu h3 { text-align: center; font-size: 1rem; }
-    .access-btn { text-align: center; padding: 12px; }
+    #cookies-banner { left: 10px; right: 10px; bottom: 10px; width: calc(100% - 20px); }
   }
 
   /* Clases de Accesibilidad aplicadas al Body */
   body.accessible-cursor { cursor: auto !important; }
   body.accessible-cursor #cursor { display: none !important; }
   body.accessible-cursor a, body.accessible-cursor button { cursor: pointer !important; }
-  
   body.large-text { font-size: 125% !important; }
   body.large-text h1 { font-size: clamp(3.5rem, 8vw, 6.5rem) !important; }
   body.large-text .hero-desc, body.large-text p, body.large-text .price-body p { font-size: 1.25rem !important; }
-  
   body.high-contrast { background: #000000 !important; color: #FFFFFF !important; }
   body.high-contrast .hero, body.high-contrast .products, body.high-contrast .menu-sec, body.high-contrast .how, body.high-contrast .reto-sec { background: #000000 !important; color: #FFFFFF !important; }
   body.high-contrast p, body.high-contrast .price-body p, body.high-contrast .step p, body.high-contrast h1, body.high-contrast h2, body.high-contrast h3 { color: #FFFFFF !important; }
   body.high-contrast .price-card, body.high-contrast .reto-box { background: #111111 !important; border: 2px solid #FFFFFF !important; }
 </style>
 
-<!-- Botón de Accesibilidad Universal -->
-<button id="btn-access-toggle" aria-label="Menú de opciones" title="Accesibilidad e Idioma" aria-expanded="false" aria-controls="accessibility-menu">♿</button>
+<!-- Botón de Opciones General (♿) -->
+<button id="btn-access-toggle" aria-label="Menú de opciones" title="Accesibilidad, Idioma y Licencias" aria-expanded="false" aria-controls="accessibility-menu">♿</button>
 
 <!-- Menú Desplegable Unificado -->
-<div id="accessibility-menu" role="region" aria-label="Opciones de accesibilidad e idioma">
+<div id="accessibility-menu" role="region" aria-label="Opciones del sitio">
   <h3>Traducir Sitio</h3>
-  <div class="translate-wrapper">
-    <!-- Contenedor donde se dibuja el traductor -->
-    <div id="google_translate_element"></div>
-  </div>
+  <div id="google_translate_element"></div>
+  <!-- Botón de restauración rápida -->
+  <button class="access-btn" style="text-align:center; background: rgba(62,200,200,0.1);" onclick="resetLanguage()">🔄 Restablecer Idioma (Español)</button>
 
   <h3>Accesibilidad</h3>
   <button class="access-btn" onclick="toggleReadableCursor()">Cursor Estándar (Lectores)</button>
   <button class="access-btn" onclick="toggleLargeText()">Texto Más Grande</button>
   <button class="access-btn" onclick="toggleHighContrast()">Modo Alto Contraste</button>
+
+  <h3>Derechos de Autor</h3>
+  <div class="cc-box">
+    Este trabajo de <strong>Punto Helado</strong> está bajo una 
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es" target="_blank">Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.
+  </div>
 </div>
 
-<!-- Scripts de Funcionamiento e Integración de Google Translate -->
+<!-- Banner de Cookies -->
+<div id="cookies-banner">
+  <p>
+    🍪 <strong>Aviso de Privacidad:</strong> Utilizamos cookies propias para garantizar la navegación segura y mejorar tu experiencia en Punto Helado de acuerdo con las leyes de protección de datos.
+  </p>
+  <button class="cookie-btn" onclick="acceptCookies()">Aceptar y Continuar</button>
+</div>
+
+<!-- Scripts de Funcionamiento -->
 <script>
   const accessToggle = document.getElementById('btn-access-toggle');
   const accessMenu = document.getElementById('accessibility-menu');
 
-  // Abrir y cerrar menú flotante
+  // Control del menú flotante
   accessToggle.addEventListener('click', (e) => {
     e.stopPropagation();
     const isVisible = accessMenu.style.display === 'block';
@@ -846,7 +871,6 @@ footer a{color:var(--teal);text-decoration:none;}
     accessToggle.setAttribute('aria-expanded', !isVisible);
   });
 
-  // Cerrar al hacer clic fuera
   document.addEventListener('click', (e) => {
     if (accessMenu.style.display === 'block' && !accessMenu.contains(e.target) && e.target !== accessToggle) {
       accessMenu.style.display = 'none';
@@ -854,24 +878,31 @@ footer a{color:var(--teal);text-decoration:none;}
     }
   });
 
-  // Funciones de Accesibilidad
+  // Toggles de Accesibilidad
   function toggleReadableCursor() { document.body.classList.toggle('accessible-cursor'); }
   function toggleLargeText() { document.body.classList.toggle('large-text'); }
   function toggleHighContrast() { document.body.classList.toggle('high-contrast'); }
 
-  // Inicialización de Google Translate
+  // Init de Google Translate
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
-      pageLanguage: 'es', 
+      pageLanguage: 'es',
+      includedLanguages: 'en,fr,de,it,pt,ja,zh-CN',
       layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
       autoDisplay: false
     }, 'google_translate_element');
   }
 
-  // Detectar si el usuario cambia el idioma para añadir una clase al body (por el tema de las imágenes)
-  document.addEventListener('shadow-automation', () => {}); // Hook preventivo
-  
-  // Monitorear el cambio del select de Google
+  // Función para regresar al idioma nativo (Español) de inmediato
+  function resetLanguage() {
+    const combo = document.querySelector('.goog-te-combo');
+    if (combo) {
+      combo.value = 'es'; // Cambia el valor interno al español
+      combo.dispatchEvent(new Event('change')); // Dispara el evento para que Google procese el cambio
+    }
+  }
+
+  // Monitoreo de traducción para controlar clases visuales
   setInterval(() => {
     const combo = document.querySelector('.goog-te-combo');
     if(combo) {
@@ -884,10 +915,27 @@ footer a{color:var(--teal);text-decoration:none;}
       });
     }
   }, 1000);
+
+  /* --- LÓGICA DEL BANNER DE COOKIES --- */
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('cookiesAceptadas')) {
+      setTimeout(() => {
+        document.getElementById('cookies-banner').style.display = 'block';
+      }, 1500);
+    }
+  });
+
+  function acceptCookies() {
+    localStorage.setItem('cookiesAceptadas', 'true');
+    document.getElementById('cookies-banner').style.animation = 'slideUp 0.3s ease-in reverse';
+    setTimeout(() => {
+      document.getElementById('cookies-banner').style.display = 'none';
+    }, 300);
+  }
 </script>
 
-<!-- Carga del script oficial de Google Translate -->
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- Script de Google Translate -->
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
 const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
